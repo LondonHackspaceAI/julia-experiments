@@ -7,7 +7,21 @@ function fact(n)
 	end
 end
 
-println(fact(parse(Int,ARGS[1])))
+function fib(n)
+	if n < 2
+		1
+	else
+		fib(n-1) + fib(n-2)
+	end
+end
+
+n = parse(Int,ARGS[1])
+println(n)
+println(fact(n))
+
+#@printf "fact(%d)= %d" (n, fact(n))
+
+
 
 
 
