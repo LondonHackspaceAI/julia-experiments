@@ -17,11 +17,5 @@ end
 
 n = parse(Int,ARGS[1])
 println(n)
-println(fact(n))
-
-#@printf "fact(%d)= %d" (n, fact(n))
-
-
-
-
+println(fib(n))
 
