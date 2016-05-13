@@ -7,7 +7,7 @@ function fact(n)
 	end
 end
 
-println(fact(3))
+println(fact(parse(Int,ARGS[1])))
 
 
 
