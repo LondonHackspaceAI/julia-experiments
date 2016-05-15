@@ -14,4 +14,8 @@ type Foo
     b
 end
 
-println(Foo(1,2))
+z= Foo(1,2)
+
+println(z)
+
+println(a(z))
