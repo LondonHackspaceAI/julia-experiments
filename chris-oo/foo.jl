@@ -18,4 +18,4 @@ z= Foo(1,2)
 
 println(z)
 
-println(a(z))
+println(z.a)
