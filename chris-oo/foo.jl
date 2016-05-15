@@ -12,6 +12,7 @@ println(10+"11");
 type Foo
     a
     b
+    blab(m) = new(m,new(m,m))
 end
 
 z= Foo(1,2)
@@ -20,5 +21,7 @@ println(z)
 
 println(z.a)
 
-square(x) = x*x
-println(square(10))
+Foo(x) = Foo(x,x)
+println(Foo(10))
+
+println(blab(11))
