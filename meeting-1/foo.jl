@@ -7,15 +7,18 @@ function fact(n)
     end
 end
 
+c=0
+
 function fib(n)
+    c=c+1
     if n < 2
 	1
     else
-        if (1==0)
+        if (1==1)
             fib(n-1) + fib(n-2)
         else
             a=[n-1, n-2]
-            aa= map(fib, a)
+            aa= pmap(fib, a)
             aa[1] + aa[2]
         end
     end
@@ -24,5 +27,6 @@ end
 n = parse(Int,ARGS[1])
 println(n)
 println(fib(n))
+println(c)
 
 #println(@spawn fib(n))
