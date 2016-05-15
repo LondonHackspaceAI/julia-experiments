@@ -1,4 +1,4 @@
-function foo(x):
+function foo(x)
     x * x
 end
 
