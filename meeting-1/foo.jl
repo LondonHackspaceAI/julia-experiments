@@ -7,11 +7,12 @@ function fact(n)
     end
 end
 
-c=1
+c=0
 
 function fib(n)
+    global c=c+1
     if n < 2
-	c
+	1
     else
         if (1==0)
             fib(n-1) + fib(n-2)
