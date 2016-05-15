@@ -12,7 +12,7 @@ println(10+"11");
 type Foo
     a
     b
-    blab(m) = new(m,new(m,m))
+    Foo(m,n) = new(m,n)
 end
 
 z= Foo(1,2)
@@ -24,4 +24,3 @@ println(z.a)
 Foo(x) = Foo(x,x)
 println(Foo(10))
 
-println(blab(11))
