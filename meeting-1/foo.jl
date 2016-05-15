@@ -14,7 +14,7 @@ function fib(n)
     if n < 2
 	1
     else
-        if (1==0)
+        if (1==1)
             fib(n-1) + fib(n-2)
         else
             a=[n-1, n-2]
