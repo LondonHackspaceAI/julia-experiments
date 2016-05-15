@@ -19,3 +19,6 @@ z= Foo(1,2)
 println(z)
 
 println(z.a)
+
+square(x) = x*x
+println(square(10))
