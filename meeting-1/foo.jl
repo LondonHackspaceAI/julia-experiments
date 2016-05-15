@@ -11,7 +11,13 @@ function fib(n)
     if n < 2
 	1
     else
-	fib(n-1) + fib(n-2)
+        if (1==0)
+            fib(n-1) + fib(n-2)
+        else
+            a=[n-1, n-2]
+            aa= map(fib, a)
+            aa[1] + aa[2]
+        end
     end
 end
 
