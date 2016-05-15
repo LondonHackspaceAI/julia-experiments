@@ -8,3 +8,10 @@ end
 # works as well as:
 
 println(10+"11");
+
+type Foo
+    a
+    b
+end
+
+println(Foo(1,2))
