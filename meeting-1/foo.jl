@@ -17,9 +17,9 @@ function fib(n)
         if (1==0)
             fib(n-1) + fib(n-2)
         else
-            a=[n-1, n-2]
-            aa= pmap(fib, a)
-            aa[1] + aa[2]
+            a= @spawn fib(n-1)
+            b= @spawn fib(n-2)
+            fetch(a) + fetch(b)
         end
     end
 end
