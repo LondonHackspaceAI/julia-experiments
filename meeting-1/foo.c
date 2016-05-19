@@ -7,15 +7,14 @@
 #include <sys/wait.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
 
 struct process {
     pid_t pid;
     int rd;
-} *process_t;
+};
 
-process_t spawn () {
-
-}
+typedef struct process *process_t;
 
 union buf_int64 {
     char buf[8];
@@ -36,7 +35,7 @@ int64_t fetch_int64 (process_t p) {
 		p->pid, status);
 	} else {
 	    assert(pid == p->pid);
-	    buf_int64 input;
+	    union buf_int64 input;
 	    ssize_t nread= read(p->rd, input.buf, 8);
 	    if (nread<0) {
 		DIE("fetch_int64: reading from process with pid %i: %s",
@@ -54,30 +53,32 @@ int64_t fetch_int64 (process_t p) {
     }
 }
 
-#define SPAWN_int64(var, expr)  {				\
-    int rw[2];							\
-    int res= pipe(rw);						\
-    if (res<0) {						\
-	DIE("SPAWN: pipe: %s", strerror(errno));		\
-    } else {							\
-        struct process var;					\
-	var.pid= fork();					\
-	if (var.pid < 0) {					\
-	    DIE("SPAWN: could not fork: %s", strerror(errno));	\
-	} else {						\
-	    if (var.pid) {					\
-	        var.rd= rw[0];					\
-		assert(close(rw[1])==0);			\
-	    } else {						\
-		assert(close(rw[0])==0);			\
-	        buf_int64 output;				\
-		output.val= (expr);				\
-		res= write(rw[1], output.buf, 8);		\
-		assert(res==8);	/* getting tired */		\
-		assert(close(rw[1])==0);			\
-		_exit(0);					\
-	    }							\
-	}							\
+#define SPAWN_int64(var, expr)						\
+    struct process var;							\
+    {									\
+	int rw[2];							\
+	int res= pipe(rw);						\
+	if (res<0) {							\
+	    DIE("SPAWN: pipe: %s", strerror(errno));			\
+	} else {							\
+	    var.pid= fork();						\
+	    if (var.pid < 0) {						\
+		DIE("SPAWN: could not fork: %s", strerror(errno));	\
+	    } else {							\
+		if (var.pid) {						\
+		    var.rd= rw[0];					\
+		    assert(close(rw[1])==0);				\
+		} else {						\
+		    assert(close(rw[0])==0);				\
+		    union buf_int64 output;				\
+		    output.val= (expr);					\
+		    res= write(rw[1], output.buf, 8);			\
+		    assert(res==8);	/* getting tired */		\
+		    assert(close(rw[1])==0);				\
+		    _exit(0);						\
+		}							\
+	    }								\
+	}								\
     }
 
 int64_t _fib (int64_t n, int level) {
@@ -99,12 +100,12 @@ int64_t fib (int64_t n) {
     return _fib(n, 0);
 }
 
-int main (char**argv,int argc) {
+int main (int argc, char**argv) {
     assert(argc==2);
     char*p;
     long int n= strtol(argv[1], &p, 10);
     assert((p-argv[1]) == strlen(argv[1]));
-    printf("n=%l\n", n);
-    printf("fib(n)=%l\n", fib(n));
+    printf("n=%ld\n", n);
+    printf("fib(n)=%lld\n", fib(n));
     return 0;
 }
