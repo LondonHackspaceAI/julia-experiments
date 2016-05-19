@@ -9,13 +9,13 @@ end
 
 c=0
 
-@everywhere function _fib(n, is_firstcall)
-    fib_(n)= _fib(n, false)
+@everywhere function _fib(n::Int, already_spawned::Bool)
+    fib_(n::Int)= _fib(n, true)
     #global c=c+1
     if n < 2
 	1
     else
-        if (!(is_firstcall))
+        if (already_spawned)
             fib_(n-1) + fib_(n-2)
         else
             a= @spawn fib_(n-1)
@@ -25,7 +25,7 @@ c=0
     end
 end
 
-fib(n)= _fib(n, true)
+fib(n)= _fib(n, false)
 
 n = parse(Int,ARGS[1])
 println(n)
