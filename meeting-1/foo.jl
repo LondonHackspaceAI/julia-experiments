@@ -9,7 +9,7 @@ end
 
 c=0
 
-function fib(n)
+@everywhere function fib(n)
     #global c=c+1
     if n < 2
 	1
