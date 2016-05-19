@@ -25,7 +25,17 @@ c=0
     end
 end
 
-fib(n)= _fib(n, 0)
+function simple_fib(n::Int)
+    #global c=c+1
+    if n < 2
+	1
+    else
+        simple_fib(n-1) + simple_fib(n-2)
+    end
+end
+
+#fib(n)= _fib(n, 0)
+fib(n)= simple_fib(n)
 
 n = parse(Int,ARGS[1])
 println(n)
