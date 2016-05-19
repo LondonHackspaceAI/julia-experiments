@@ -43,7 +43,7 @@ int64_t fetch_int64 (process_t p) {
 	    } else {
 		if (nread!=8) {
 		    DIE("fetch_int64: reading from process with pid %i: "
-			"expected 8 bytes, got %i",
+			"expected 8 bytes, got %ld",
 			p->pid, nread);
 		} else {
 		    return input.val;
@@ -106,6 +106,6 @@ int main (int argc, char**argv) {
     long int n= strtol(argv[1], &p, 10);
     assert((p-argv[1]) == strlen(argv[1]));
     printf("n=%ld\n", n);
-    printf("fib(n)=%lld\n", fib(n));
+    printf("fib(n)=%ld\n", fib(n));
     return 0;
 }
