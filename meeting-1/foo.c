@@ -86,7 +86,7 @@ int64_t _fib (int64_t n, int level) {
     if (n < 2) {
 	return 1;
     } else {
-	if (level<10) {
+	if (level<11) {
 	    SPAWN_int64(a, fib_(n-1));
 	    int64_t b= fib_(n-2);
 	    return fetch_int64(&a) + b;
