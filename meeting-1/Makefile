@@ -1,3 +1,3 @@
-foo: foo.c
-	gcc -Wall -o foo -O2 foo.c
+foo: foo.c Makefile
+	gcc -Wall -o foo -O foo.c
 
