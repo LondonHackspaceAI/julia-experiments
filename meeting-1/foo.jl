@@ -17,8 +17,8 @@ c=0
     else
         if (level<6) # 2**6==64 cores
             a= @spawn fib_(n-1)
-            b= @spawn fib_(n-2)
-            fetch(a) + fetch(b)
+            b= fib_(n-2)
+            fetch(a) + b
         else
             fib_(n-1) + fib_(n-2)
         end
