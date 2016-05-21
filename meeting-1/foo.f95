@@ -1,3 +1,5 @@
-program first
-print *, 'This is my first program'
-end program first
+program foo
+real :: a
+a = 1.5
+print *, a
+end program foo
