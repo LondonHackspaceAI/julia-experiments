@@ -111,6 +111,6 @@ int main (int argc, char**argv) {
     long int n= strtol(argv[1], &p, 10);
     assert((p-argv[1]) == strlen(argv[1]));
     printf("n=%ld\n", n);
-    printf("fib(n)=%ld\n", fib(n));
+    printf("fib(n)=%ld\n", single_fib(n));
     return 0;
 }
