@@ -7,8 +7,12 @@ import (
 	"fmt"
 )
 
-func fib (n uint) int {
-	return fib(n-1) + fib(n-2)
+func fib (n int) int {
+	if n < 2 {
+		return 1
+	} else {
+		return fib(n-1) + fib(n-2)
+	}
 }
 
 func main () {
@@ -16,5 +20,5 @@ func main () {
 	if err != nil {
 		log.Fatal(err)
 	}
-	fmt.Println("fib(", n, ") = ", fib(uint(n)))
+	fmt.Println("fib(", n, ") = ", fib(n))
 }
