@@ -81,18 +81,23 @@ int64_t fetch_int64 (process_t p) {
 	}								\
     }
 
-int64_t _fib (int64_t n, int level) {
-#define fib_(n) _fib(n, level+1)
+
+int64_t single_fib (int64_t n) {
     if (n < 2) {
 	return 1;
     } else {
-	if (level<11) {
-	    SPAWN_int64(a, fib_(n-1));
-	    int64_t b= fib_(n-2);
-	    return fetch_int64(&a) + b;
-	} else {
-	    return fib_(n-1) + fib_(n-2);
-	}
+	return single_fib(n-1) + single_fib(n-2);
+    }
+}
+
+int64_t _fib (int64_t n, int level) {
+#define fib_(n) _fib(n, level+1)
+    if (level<11) {
+        SPAWN_int64(a, fib_(n-1));
+        int64_t b= fib_(n-2);
+        return fetch_int64(&a) + b;
+    } else {
+        return single_fib (n);
     }
 }
 
