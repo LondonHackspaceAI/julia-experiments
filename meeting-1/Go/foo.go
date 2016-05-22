@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"strconv"
 	"fmt"
 )
 
@@ -10,6 +11,6 @@ func fib (n int) int {
 }
 
 func main () {
-	n := int (os.Args[1])
+	n, err := strconv.Atoi(os.Args[1])
 	fmt.Println("fib(", n, ") = ", fib(n))
 }
