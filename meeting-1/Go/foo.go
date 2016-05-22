@@ -1,10 +1,14 @@
 package main
 
 import (
+	"os"
 	"fmt"
-	"math/rand"
 )
 
+func fib (n int) {
+	return (fib(n-1) + fib(n-2))
+}
+
 func main () {
-	fmt.Println("My favorite number is", rand.Intn(10))
+	fmt.Println("My first argument is", os.Args[1])
 }
