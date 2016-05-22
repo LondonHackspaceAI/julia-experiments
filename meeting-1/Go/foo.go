@@ -10,5 +10,6 @@ func fib (n int) int {
 }
 
 func main () {
-	fmt.Println("My first argument is", os.Args[1])
+	n := int (os.Args[1])
+	fmt.Println("fib(", n, ") = ", fib(n))
 }
