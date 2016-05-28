@@ -9,18 +9,33 @@ end
 
 println(10+"11");
 
-type Foo
-    a
+abstract Foo
+
+type Foo1 <: Foo
+    a::Integer
     b
-    Foo(m,n) = new(m,n)
+    Foo1(m,n) = new(m,n)
 end
 
-z= Foo(1,2)
+bar(f::Foo)= f.a + f.b
+
+
+type Foo2 <: Foo
+    a::AbstractString
+    b
+    c
+end
+
+
+z= Foo1(1,2)
 
 println(z)
 
 println(z.a)
 
-Foo(x) = Foo(x,x)
-println(Foo(10))
+Foo1(x) = Foo1(x,x)
+println(Foo1(10))
 
+println(bar(z))
+
+println(Foo2("foo2",20,false))
