@@ -39,3 +39,19 @@ println(Foo1(10))
 println(bar(z))
 
 println(Foo2("foo2",20,false))
+
+bsquare(f::Foo)= f.b * f.b
+
+println(bsquare(Foo1(10)))
+println(bsquare(Foo2("foo2",20,false)))
+
+avalue(f::Foo)= f.a
+
+println(avalue(Foo1(10)))
+println(avalue(Foo2("foo2",20,false)))
+
+cvalue(f::Foo)= f.c
+
+# println(cvalue(Foo1(10)))  fails as expected
+println(cvalue(Foo2("foo2",20,false)))
+
