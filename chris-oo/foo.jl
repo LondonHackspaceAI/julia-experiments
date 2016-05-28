@@ -58,3 +58,8 @@ cvalue(f::Foo)= f.c
 # println(cvalue(Foo1(10)))  fails as expected
 println(cvalue(Foo2("foo2",20,false)))
 
+
+# Iteration, tail-call optimization?:
+
+iter(x,y)= (x<0) ? y : iter(x-1,y+x)
+println(iter(10000000,0))
