@@ -17,6 +17,8 @@ type Foo1 <: Foo
     Foo1(m,n) = new(m,n)
 end
 
+baz(f::Foo)= bar(f) * bar(f)
+
 bar(f::Foo)= f.a + f.b
 
 
@@ -37,6 +39,7 @@ Foo1(x) = Foo1(x,x)
 println(Foo1(10))
 
 println(bar(z))
+println(baz(z))
 
 println(Foo2("foo2",20,false))
 
