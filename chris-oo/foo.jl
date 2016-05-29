@@ -17,6 +17,8 @@ type Foo1 <: Foo
     Foo1(m,n) = new(m,n)
 end
 
+baz(f::Foo)= bar(f) * bar(f)
+
 bar(f::Foo)= f.a + f.b
 
 
@@ -37,5 +39,27 @@ Foo1(x) = Foo1(x,x)
 println(Foo1(10))
 
 println(bar(z))
+println(baz(z))
 
 println(Foo2("foo2",20,false))
+
+bsquare(f::Foo)= f.b * f.b
+
+println(bsquare(Foo1(10)))
+println(bsquare(Foo2("foo2",20,false)))
+
+avalue(f::Foo)= f.a
+
+println(avalue(Foo1(10)))
+println(avalue(Foo2("foo2",20,false)))
+
+cvalue(f::Foo)= f.c
+
+# println(cvalue(Foo1(10)))  fails as expected
+println(cvalue(Foo2("foo2",20,false)))
+
+
+# Iteration, tail-call optimization?:
+
+iter(x,y)= (x<0) ? y : iter(x-1,y+x)
+println(iter(10000000,0))
