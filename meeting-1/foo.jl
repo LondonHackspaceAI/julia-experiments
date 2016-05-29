@@ -1,12 +1,3 @@
-
-function fact(n)
-    if n == 0
-	1
-    else
-	n * fact(n-1)
-    end
-end
-
 c=0
 
 @everywhere function _fib(n::Int, level::Int)
