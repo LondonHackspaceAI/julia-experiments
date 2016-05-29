@@ -1,4 +1,4 @@
-function single_fib(n::Int)
+@everywhere function single_fib(n::Int)
     _fib=single_fib
     n < 2 ? 1 : _fib(n-1) + _fib(n-2)
 end
@@ -14,7 +14,8 @@ end
             b= _fib(n-2)
             fetch(a) + b
         else
-            _fib(n-1) + _fib(n-2)
+            # _fib(n-1) + _fib(n-2)
+            single_fib(n)
         end
     end
 end
