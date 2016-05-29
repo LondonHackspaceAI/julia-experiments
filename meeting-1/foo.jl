@@ -4,18 +4,18 @@
 end
 
 @everywhere function _parallel_fib(n::Int, level::Int)
+    _fib(n::Int)= _parallel_fib(n, level+1)
     if n < 2
 	1
     else
         # 2**6==64 already, but not all of them run long enough.
         if (level<11)
-            a= @spawn _parallel_fib(n-1,level+1)
-            b= _parallel_fib(n-2,level+1)
+            a= @spawn _fib(n-1)
+            b= _fib(n-2)
             fetch(a) + b
         else
-            #_fib(n-1) + _fib(n-2)
-            _parallel_fib(n-1,level+1) + _parallel_fib(n-2,level+1)
-            #single_fib(n)
+            # _fib(n-1) + _fib(n-2)
+            single_fib(n)
         end
     end
 end
